@@ -16,7 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="BussinessLogic\" />
+    <Folder Include="Repository\" />
     <Folder Include="Utility\" />
+    <Folder Include="wwwroot\e-books\" />
   </ItemGroup>
 
 </Project>
