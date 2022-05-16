@@ -20,6 +20,7 @@
     <Folder Include="Repository\" />
     <Folder Include="Utility\" />
     <Folder Include="wwwroot\e-books\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
