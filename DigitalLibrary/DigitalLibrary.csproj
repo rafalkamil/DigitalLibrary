@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,16 +9,12 @@
 
   <ItemGroup>
     <Compile Remove="BussinessLogic\**" />
-    <Compile Remove="Repository\**" />
     <Compile Remove="Utility\**" />
     <Content Remove="BussinessLogic\**" />
-    <Content Remove="Repository\**" />
     <Content Remove="Utility\**" />
     <EmbeddedResource Remove="BussinessLogic\**" />
-    <EmbeddedResource Remove="Repository\**" />
     <EmbeddedResource Remove="Utility\**" />
     <None Remove="BussinessLogic\**" />
-    <None Remove="Repository\**" />
     <None Remove="Utility\**" />
   </ItemGroup>
 
@@ -31,8 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Book\" />
     <Folder Include="wwwroot\e-books\" />
     <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\lib\bootstrap\icons\" />
   </ItemGroup>
 
 </Project>

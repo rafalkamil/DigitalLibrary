@@ -16,9 +16,9 @@ namespace DigitalLibrary.Models
         public BookType Type { get; set; }
         public int GradeId { get; set; }
         public Grade Grade { get; set; }
-        public string Description { get; set; }
-        public string ImageURL { get; set; }
-        public string BookURL { get; set; }
+        public string? Description { get; set; }
+        public string? ImageURL { get; set; }
+        public string? BookURL { get; set; }
 
     }
 }

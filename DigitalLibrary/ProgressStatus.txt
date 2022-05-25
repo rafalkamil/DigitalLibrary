@@ -1,0 +1,5 @@
+﻿Models - done
+Database connetcion - done
+Repository - done
+CRUD - Controllers - in progress 
+Views - await

@@ -7,6 +7,6 @@ namespace DigitalLibrary.Models
         [Key]
         public int ID { get; set; }
         [MaxLength(100)]
-        public string GradeName { get; set; }
+        public string? GradeName { get; set; }
     }
 }

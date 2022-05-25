@@ -7,6 +7,6 @@ namespace DigitalLibrary.Models
         [Key]
         public int ID { get; set; }
         [MaxLength(100)]
-        public string BookTypeName { get; set; }
+        public string? BookTypeName { get; set; }
     }
 }

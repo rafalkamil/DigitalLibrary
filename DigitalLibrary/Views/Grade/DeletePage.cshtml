@@ -1,0 +1,24 @@
+﻿@model Grade
+
+<form method="post" asp-action="Delete">
+    <input asp-for="@Model.ID" hidden/>
+    <div class="row pb-2">
+        <h2 class="text-primary">Are You sure ?</h2>
+        <br/>
+    </div>
+    <div asp-validation-summary="All"></div>
+
+    <div class="row mb-3">
+        <div class="col-5">
+            <label asp-for="GradeName">@Model.GradeName</label>
+        </div>
+        <div class="col-3"> 
+            <button type="submit" class="btn btn-primary" style="width:100%">Yes, Delete!</button>
+        </div>
+        <div class="col-3">
+            <a asp-controller="Grade" asp-action="Index" class="btn btn-dark">No, take me back!</a>
+        </div>
+    </div>
+
+
+</form>

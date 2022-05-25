@@ -7,6 +7,6 @@ namespace DigitalLibrary.Models
         [Key]
         public int Id { get; set; }
         [MaxLength(100, ErrorMessage = "Category Name is too long !")]
-        public string CategoryName { get; set; }
+        public string? CategoryName { get; set; }
     }
 }
