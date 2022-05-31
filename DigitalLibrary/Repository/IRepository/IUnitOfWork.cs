@@ -6,6 +6,7 @@
         IBookTypeRepository BookType { get; }
         ICategoryRepository Category { get; }
         IGradeRepository Grade { get; }
+        IStatusRepository Status { get; }
 
         void Save();
     }

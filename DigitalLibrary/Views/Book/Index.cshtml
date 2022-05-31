@@ -1,0 +1,59 @@
+﻿
+@model IEnumerable<Book>;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-1">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Catalogue</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Book" asp-action="UpsertPage" class="btn btn-primary">
+                <img src="/lib/bootstrap/icons/plus-square.svg" alt="Bootstrap" width="25" height="25">
+                Add New Book
+            </a>
+        </div>
+    </div>
+    <br/><br/>
+    <table class="table table-bordered table-striped" style="width:90%">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Type</th>
+                <th>Grade</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Object in Model)
+            {
+                <tr>
+                    <th>@Object.Title</th>
+                    <th>@Object.Author</th>
+                    <th>@Object.Category.CategoryName</th>
+                    <th>@Object.BookType.BookTypeName</th>
+                    <th>@Object.Grade.GradeName</th>
+                    <th>@Object.Status.StatusName</th>
+                    <th>
+                        <div class="w-30 btn-group" role="group">
+                            <a asp-controller="Book" asp-action="UpsertPage" asp-route-id="@Object.Id" class="btn btn-primary mx-2">
+                                <img src="/lib/bootstrap/icons/pen.svg" alt="Bootstrap" width="20" height="20">
+                                Edit
+                            </a>
+                            <a asp-controller="Book" asp-action="DetailsPage" asp-route-id="@Object.Id" class="btn btn-primary mx-2">
+                                <img src="/lib/bootstrap/icons/book.svg" alt="Bootstrap" width="20" height="20">
+                                Details
+                            </a>
+                        </div>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

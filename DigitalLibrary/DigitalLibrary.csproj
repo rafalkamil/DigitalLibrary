@@ -27,9 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Book\" />
-    <Folder Include="wwwroot\e-books\" />
-    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\lib\bootstrap\icons\" />
   </ItemGroup>
 

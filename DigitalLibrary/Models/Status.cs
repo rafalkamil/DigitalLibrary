@@ -2,11 +2,12 @@
 
 namespace DigitalLibrary.Models
 {
-    public class BookType
+    public class Status
     {
         [Key]
         public int Id { get; set; }
         [MaxLength(100)]
-        public string? BookTypeName { get; set; }
+        public string? StatusName { get; set; }
+
     }
 }

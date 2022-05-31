@@ -15,6 +15,7 @@ namespace DigitalLibrary.Repository
             BookType = new BookTypeRepository(_db);
             Category = new CategoryRepository(_db); 
             Grade = new GradeRepository(_db);
+            Status = new StatusRepository(_db);
 
         }
         public IBookRepository Book {get;private set;}
@@ -24,6 +25,7 @@ namespace DigitalLibrary.Repository
         public ICategoryRepository Category { get; private set; }
 
         public IGradeRepository Grade { get; private set; }
+        public IStatusRepository Status { get; private set; }
 
         public void Save()
         {

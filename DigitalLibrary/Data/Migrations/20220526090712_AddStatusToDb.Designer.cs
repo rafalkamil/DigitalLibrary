@@ -4,6 +4,7 @@ using DigitalLibrary.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DigitalLibrary.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220526090712_AddStatusToDb")]
+    partial class AddStatusToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,18 +26,15 @@ namespace DigitalLibrary.Data.Migrations
 
             modelBuilder.Entity("DigitalLibrary.Models.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<string>("Author")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("BookTypeId")
-                        .HasColumnType("int");
 
                     b.Property<string>("BookURL")
                         .HasColumnType("nvarchar(max)");
@@ -60,9 +59,10 @@ namespace DigitalLibrary.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("BookTypeId");
+                    b.HasKey("ID");
 
                     b.HasIndex("CategoryId");
 
@@ -70,22 +70,24 @@ namespace DigitalLibrary.Data.Migrations
 
                     b.HasIndex("StatusId");
 
+                    b.HasIndex("TypeId");
+
                     b.ToTable("Books");
                 });
 
             modelBuilder.Entity("DigitalLibrary.Models.BookType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<string>("BookTypeName")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("BookTypes");
                 });
@@ -345,12 +347,6 @@ namespace DigitalLibrary.Data.Migrations
 
             modelBuilder.Entity("DigitalLibrary.Models.Book", b =>
                 {
-                    b.HasOne("DigitalLibrary.Models.BookType", "BookType")
-                        .WithMany()
-                        .HasForeignKey("BookTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DigitalLibrary.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
@@ -369,13 +365,19 @@ namespace DigitalLibrary.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BookType");
+                    b.HasOne("DigitalLibrary.Models.BookType", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
 
                     b.Navigation("Grade");
 
                     b.Navigation("Status");
+
+                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
