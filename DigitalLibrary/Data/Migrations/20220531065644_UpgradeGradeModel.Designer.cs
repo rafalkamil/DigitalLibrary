@@ -4,6 +4,7 @@ using DigitalLibrary.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DigitalLibrary.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220531065644_UpgradeGradeModel")]
+    partial class UpgradeGradeModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,19 +48,7 @@ namespace DigitalLibrary.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Grade1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Grade2")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Grade3")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Grade4")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Grade5")
+                    b.Property<int>("GradeId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageURL")
@@ -77,6 +67,8 @@ namespace DigitalLibrary.Data.Migrations
                     b.HasIndex("BookTypeId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("GradeId");
 
                     b.HasIndex("StatusId");
 
@@ -128,6 +120,9 @@ namespace DigitalLibrary.Data.Migrations
                     b.Property<string>("GradeName")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("GradeValue")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -367,6 +362,12 @@ namespace DigitalLibrary.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DigitalLibrary.Models.Grade", "Grade")
+                        .WithMany()
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DigitalLibrary.Models.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
@@ -376,6 +377,8 @@ namespace DigitalLibrary.Data.Migrations
                     b.Navigation("BookType");
 
                     b.Navigation("Category");
+
+                    b.Navigation("Grade");
 
                     b.Navigation("Status");
                 });

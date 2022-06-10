@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Book>;
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,3 +9,32 @@
     <h1 class="display-4">Welcome in Digital Library !</h1>
     <p>Menage Your book's collections simply. </p>
 </div>
+
+<div class="row pb-3">
+    @foreach(var book in Model)
+    {
+        <div class="col-lg-2 col-md-4">
+            <div class="row p-2">
+                <div class="col-12 p-1" style="border:1px solid #008cba; border-radius: 5px;">
+                    <div class="card">
+                        <img src="@book.ImageURL" class="card-img-top rounded"/>
+
+                        <div class="card-body">
+                            <div class="pl-1">
+                                <p class="card-title h6 text-primary"><b>@book.Title</b></p>
+                                <p class="card-title text-info"><i>@book.Author</i></p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="card-title text-primary">@book.Status.StatusName</p> @*Change it for idk type *@
+                            </div>
+                            <div class="pl-1">
+                                <button  type="button" class="nav-link btn btn-primary text-dark">I Readed It !</button> @*Make It work You piece of shit !*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

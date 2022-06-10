@@ -12,8 +12,6 @@ namespace DigitalLibrary.Models.ViewModels
         [ValidateNever]
         public IEnumerable<SelectListItem> Category { get; set; }
 
-        [ValidateNever]
-        public IEnumerable<SelectListItem> Grade { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> Status { get; set; }

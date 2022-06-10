@@ -20,18 +20,21 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home
+          <a class="nav-link active text-dark" asp-area="" asp-controller="Home" asp-action="Index"><img src="/lib/bootstrap/icons/house.svg" alt="Bootstrap" width="25" height="25"> Home
             <span class="visually-hidden">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Catalog</a>
+          <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index"><img src="/lib/bootstrap/icons/bookshelf.svg" alt="Bootstrap" width="25" height="25"> Catalog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="#">Wish List</a>
+          <a class="nav-link text-dark" href="#"><img src="/lib/bootstrap/icons/heart.svg" alt="Bootstrap" width="25" height="25"> Wish List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="UpsertPage"><img src="/lib/bootstrap/icons/plus-square.svg" alt="Bootstrap" width="25" height="25"> Add Book</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Settings</a>
+          <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="/lib/bootstrap/icons/gear.svg" alt="Bootstrap" width="25" height="25"> Settings</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
             <a class="dropdown-item" asp-area="" asp-controller="Grade" asp-action="Index">Grades</a>
