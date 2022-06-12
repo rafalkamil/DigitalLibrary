@@ -38,14 +38,56 @@
                <span asp-validation-for="Book.CategoryId" class="text-danger"></span>
            </div>
        </div>
+             
        <div class="row mb-3">
-           <div class="col-6">
-               <label asp-for="Book.GradeId">Grade</label>
-               <select asp-for="Book.GradeId" asp-items="@Model.Grade" class="form-control">
-                   <option disabled selected>---Select Grade---</option>
-               </select>
-               <span asp-validation-for="Book.GradeId" class="text-danger"></span>
+           <div class="col-2">
+               <label asp-for="Book.Grade1">Fabula [1-5]</label>
            </div>
+           <div class="col-2">
+               <input asp-for="Book.Grade1" class="form-control"/>
+               <span asp-validation-for="Book.Grade1" class="text-danger"></span>
+           </div>
+       </div>    
+        <div class="row mb-3">
+           <div class="col-2">
+               <label asp-for="Book.Grade2">Spojnosc [1-5]</label>
+           </div>
+           <div class="col-2">
+               <input asp-for="Book.Grade2" class="form-control"/>
+               <span asp-validation-for="Book.Grade2" class="text-danger"></span>
+           </div>
+       </div>
+       <div class="row mb-3">
+           <div class="col-2">
+               <label asp-for="Book.Grade3">Akcja [1-5]</label>
+           </div>
+           <div class="col-2">
+               <input asp-for="Book.Grade3" class="form-control"/>
+               <span asp-validation-for="Book.Grade3" class="text-danger"></span>
+           </div>
+       </div>
+       <div class="row mb-3">
+           <div class="col-2">
+               <label asp-for="Book.Grade4">Bohaterowie [1-5]</label>
+           </div>
+           <div class="col-2">
+               <input asp-for="Book.Grade4" class="form-control"/>
+               <span asp-validation-for="Book.Grade4" class="text-danger"></span>
+           </div>
+       </div>
+       <div class="row mb-3">
+           <div class="col-2">
+               <label asp-for="Book.Grade5">Narracja [1-5]</label>
+           </div>
+           <div class="col-2">
+               <input asp-for="Book.Grade5" class="form-control"/>
+               <span asp-validation-for="Book.Grade5" class="text-danger"></span>
+           </div>
+       </div> <!-- Grades-->
+
+       </div>
+
+        <div class="row mb-3">
            <div class="col-6">
                <label asp-for="Book.StatusId">Status</label>
                <select asp-for="Book.StatusId" asp-items="@Model.Status" class="form-control">
@@ -62,13 +104,11 @@
            </div>
        </div>
        <div class="row mb-3">
-            <div class="col-12">
+            <div class="col-6">
                 <label asp-for="Book.BookURL"></label>
                 <input type="file" id="uploadBox" name="file" class="form-control"/>
             </div>
-        </div>
-       <div class="row mb-3">
-            <div class="col-12">
+            <div class="col-6">
                 <label asp-for="Book.ImageURL"></label>
                 <input type="file" id="uploadBox" name="file" class="form-control"/>
             </div>
@@ -97,11 +137,6 @@
                 <a asp-controller="Book" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
             </div>
         </div>
-
-
-
-
-
     </div>
 
 </form>

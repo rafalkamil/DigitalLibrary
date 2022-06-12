@@ -13,6 +13,8 @@
 <div class="row pb-3">
     @foreach(var book in Model)
     {
+        @if(book.Status.StatusName == "To read" && book.BookType.BookTypeName != "I-Wish")
+        {
         <div class="col-lg-2 col-md-4">
             <div class="row p-2">
                 <div class="col-12 p-1" style="border:1px solid #008cba; border-radius: 5px;">
@@ -25,16 +27,27 @@
                                 <p class="card-title text-info"><i>@book.Author</i></p>
                             </div>
                             <div class="pl-1">
-                                <p class="card-title text-primary">@book.Status.StatusName</p> @*Change it for idk type *@
+                                <p class="card-title text-primary">@book.Status.StatusName</p> 
                             </div>
                             <div class="pl-1">
-                                <button  type="button" class="nav-link btn btn-primary text-dark">I Readed It !</button> @*Make It work You piece of shit !*@
+                                <button  type="button" class="nav-link btn btn-primary text-dark">Readed
+                                    <img src="/lib/bootstrap/icons/check.svg" alt="Bootstrap" width="20" height="20">
+                                </button> @*Make It work You piece of shit !*@
                             </div>
+                            @if(book.BookType.BookTypeName == "e-book")
+                            {
+                            <hr/>
+                            <div class="pl-1">
+                                <button  type="button" class="nav-link btn btn-primary text-dark">Send to Kindle</button> @*Make It work You piece of shit !*@
+                            </div>    
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>    
+        }
+        
     }
 </div>
 

@@ -18,7 +18,7 @@ namespace DigitalLibrary.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Book> ObjectBookList = _unitOfWork.Book.GetAll(includeProperites: "Grade,Category,BookType,Status");
+            IEnumerable<Book> ObjectBookList = _unitOfWork.Book.GetAll(includeProperites: "Category,BookType,Status");
             return View(ObjectBookList);
         }
 
@@ -36,11 +36,6 @@ namespace DigitalLibrary.Controllers
                 {
                     Text = i.CategoryName,
                     Value = i.Id.ToString()
-                }),
-                Grade = _unitOfWork.Grade.GetAll().Select(i => new SelectListItem
-                {
-                    Text = i.GradeName,
-                    Value = i.ID.ToString()
                 }),
                 Status = _unitOfWork.Status.GetAll().Select(i => new SelectListItem
                 {
@@ -119,6 +114,39 @@ namespace DigitalLibrary.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult DeletePage(int? Id)
+        {
+            BookVM bookVM = new();
+
+            if(Id == null || Id == 0)
+            {
+                return View(bookVM);
+            }
+            else
+            {
+                bookVM.Book = _unitOfWork.Book.GetFirstOrDefault(u => u.Id == Id);
+                return View(bookVM);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public  IActionResult Delete(BookVM Object, IFormFile file)
+        {
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+
+            var oldImagePath = Path.Combine(wwwRootPath, Object.Book.ImageURL.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+
+            _unitOfWork.Book.Remove(Object.Book);
+            _unitOfWork.Save();
+            return RedirectToAction("Index");
+
         }
     }
 }

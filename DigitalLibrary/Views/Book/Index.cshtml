@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<Book>;
+﻿@model IEnumerable<Book>;
 
 @{
     ViewData["Title"] = "Index";
@@ -25,7 +24,6 @@
                 <th>Author</th>
                 <th>Category</th>
                 <th>Type</th>
-                <th>Grade</th>
                 <th>Status</th>
                 <th></th>
             </tr>
@@ -38,7 +36,6 @@
                     <th>@Object.Author</th>
                     <th>@Object.Category.CategoryName</th>
                     <th>@Object.BookType.BookTypeName</th>
-                    <th>@Object.Grade.GradeName</th>
                     <th>@Object.Status.StatusName</th>
                     <th>
                         <div class="w-30 btn-group" role="group">
