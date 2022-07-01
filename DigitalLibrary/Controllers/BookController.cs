@@ -1,4 +1,5 @@
-﻿using DigitalLibrary.Models;
+﻿using DigitalLibrary.BusinessLogic;
+using DigitalLibrary.Models;
 using DigitalLibrary.Models.ViewModels;
 using DigitalLibrary.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,13 @@ namespace DigitalLibrary.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IBusinessLogicLayer _businessLogicLayer;
 
-        public BookController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
+        public BookController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment, IBusinessLogicLayer businessLogicLayer)
         {
             _unitOfWork = unitOfWork;
-            _webHostEnvironment = webHostEnvironment; 
+            _webHostEnvironment = webHostEnvironment;
+            _businessLogicLayer = businessLogicLayer;   
         }
         public IActionResult Index()
         {
@@ -57,60 +60,11 @@ namespace DigitalLibrary.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(BookVM Object, IFormFile file)
+        public IActionResult Upsert(BookVM Object, IFormFile fileImage, IFormFile fileEbook)
         {
             if (ModelState.IsValid)
             {
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-
-                if(file != null)
-                {
-                    string FileName = Guid.NewGuid().ToString();
-                    var UploadImage = Path.Combine(wwwRootPath, @"images");
-                    var UploadEbook = Path.Combine(wwwRootPath, @"e-books");
-                    var Extension = Path.GetExtension(file.FileName);
-
-                    if(Object.Book.ImageURL != null)
-                    {
-                        var oldImagePath = Path.Combine(wwwRootPath, Object.Book.ImageURL.TrimStart('\\'));
-                        if (System.IO.File.Exists(oldImagePath))
-                        {
-                            System.IO.File.Delete(oldImagePath);
-                        }
-                    }
-
-                    if (Object.Book.BookURL != null)
-                    {
-                        var oldBookPath = Path.Combine(wwwRootPath, Object.Book.BookURL.TrimStart('\\'));
-                        if (System.IO.File.Exists(oldBookPath))
-                        {
-                            System.IO.File.Delete(oldBookPath);
-                        }
-                    }
-
-                    using (var fileStreamImage = new FileStream(Path.Combine(UploadImage, FileName + Extension), FileMode.Create))
-                    {
-                        file.CopyTo(fileStreamImage);
-                    }
-                    Object.Book.ImageURL = @"\images\" + FileName + Extension;
-
-                    using (var fileStreamEbook = new FileStream(Path.Combine(UploadEbook, FileName + Extension), FileMode.Create))
-                    {
-                        file.CopyTo(fileStreamEbook);
-                    }
-                    Object.Book.BookURL = @"\e-books\" + FileName + Extension;
-                }
-
-                if(Object.Book.Id == 0)
-                {
-                    _unitOfWork.Book.Add(Object.Book);
-                }
-                else
-                {
-                    _unitOfWork.Book.Update(Object.Book);
-                }
-
-                _unitOfWork.Save();
+                _businessLogicLayer.UpsertBook(Object, fileImage, fileEbook);
             }
 
             return RedirectToAction("Index");
@@ -133,18 +87,13 @@ namespace DigitalLibrary.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  IActionResult Delete(BookVM Object, IFormFile file)
+        public  IActionResult Delete(BookVM Object, IFormFile fileImage, IFormFile fileEbook)
         {
-            string wwwRootPath = _webHostEnvironment.WebRootPath;
-
-            var oldImagePath = Path.Combine(wwwRootPath, Object.Book.ImageURL.TrimStart('\\'));
-            if (System.IO.File.Exists(oldImagePath))
+            if (ModelState.IsValid)
             {
-                System.IO.File.Delete(oldImagePath);
+                _businessLogicLayer.DeleteBook(Object, fileImage, fileEbook);
             }
-
-            _unitOfWork.Book.Remove(Object.Book);
-            _unitOfWork.Save();
+            
             return RedirectToAction("Index");
 
         }

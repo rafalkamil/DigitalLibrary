@@ -37,7 +37,6 @@
           <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="/lib/bootstrap/icons/gear.svg" alt="Bootstrap" width="25" height="25"> Settings</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
-            <a class="dropdown-item" asp-area="" asp-controller="Grade" asp-action="Index">Grades</a>
           </div>
         </li>
       </ul>
@@ -60,6 +59,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.tiny.cloud/1/8t60cilz9g6j0fp0cbi5jll792i67avm6pe4fuzn00ne29es/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

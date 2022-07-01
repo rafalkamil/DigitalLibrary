@@ -1,3 +1,4 @@
+using DigitalLibrary.BusinessLogic;
 using DigitalLibrary.Data;
 using DigitalLibrary.Repository;
 using DigitalLibrary.Repository.IRepository;
@@ -16,6 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IBusinessLogicLayer, BusinessLogicLayer>();
 
 var app = builder.Build();
 

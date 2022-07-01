@@ -13,7 +13,6 @@ namespace DigitalLibrary.Data
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Grade> Grades { get; set; }
         public DbSet<BookType> BookTypes { get; set; }
         public DbSet<Status> Statuses { get; set; }
     }

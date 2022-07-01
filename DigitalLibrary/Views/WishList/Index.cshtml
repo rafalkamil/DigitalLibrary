@@ -6,7 +6,14 @@
 
 <div class="text-center">
     <br />
-    <h1 class="display-4">List of Book's I want !</h1>
+    <h1 class="display-4">
+        List of Book's I want ! 
+        <a asp-controller="WishList" asp-action="UpsertPage" class="btn btn-primary">
+                <img src="/lib/bootstrap/icons/plus-square.svg" alt="Bootstrap" width="25" height="25">
+                Add New Wish
+        </a> 
+    </h1>
+
 </div>
 
 <div class="row pb-3">
@@ -29,8 +36,10 @@
                                 <p class="card-title text-primary">@book.Status.StatusName</p> 
                             </div>
                             <div class="pl-1 p-2">
-                                <button  type="button" class="nav-link btn btn-success text-dark">Got it 
-                                    <img src="/lib/bootstrap/icons/star.svg" alt="Bootstrap" width="20" height="20"></button> @*Make It work You piece of shit !*@
+                                <a asp-controller="WishList" asp-action="GotItPage" class="btn btn-primary" style="width:100%">
+                                    Got It
+                                    <img src="/lib/bootstrap/icons/star.svg" alt="Bootstrap" width="20" height="20">
+                                </a>
                             </div>
 
                         </div>

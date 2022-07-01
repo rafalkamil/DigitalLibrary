@@ -1,4 +1,5 @@
-﻿using DigitalLibrary.Data;
+﻿using DigitalLibrary.BusinessLogic;
+using DigitalLibrary.Data;
 using DigitalLibrary.Models;
 using DigitalLibrary.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +9,12 @@ namespace DigitalLibrary.Controllers
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IBusinessLogicLayer _businessLogicLayer;
 
-        public CategoryController(IUnitOfWork unitOfWork)
+        public CategoryController(IUnitOfWork unitOfWork, IBusinessLogicLayer businessLogicLayer)
         {
             _unitOfWork = unitOfWork;
+            _businessLogicLayer = businessLogicLayer;
         }
         public IActionResult Index()
         {
@@ -27,8 +30,7 @@ namespace DigitalLibrary.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Add(Object);
-                _unitOfWork.Save();
+                _businessLogicLayer.CreateCategory(Object);
                 return RedirectToAction("Index");   
             }
             return View(Object);    
@@ -51,8 +53,7 @@ namespace DigitalLibrary.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Remove(Object);
-                _unitOfWork.Save();
+                _businessLogicLayer.DeleteCategory(Object);
                 return RedirectToAction("Index");
             }
 

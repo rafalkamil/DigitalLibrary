@@ -9,7 +9,7 @@ namespace DigitalLibrary.Models
         public int Id { get; set; }
         [MaxLength(100)]
         public string Title { get; set; }
-        [MaxLength]
+        [MaxLength(100)]
         public string Author { get; set; }
         [ValidateNever]
         public int CategoryId { get; set; }
