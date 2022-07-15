@@ -30,9 +30,9 @@ namespace DigitalLibrary.BusinessLogic
                 if (Object.Book.ImageURL != null)
                 {
                     var oldImagePath = Path.Combine(wwwRootPath, Object.Book.ImageURL.TrimStart('\\'));
-                    if (System.IO.File.Exists(oldImagePath))
+                    if (File.Exists(oldImagePath))
                     {
-                        System.IO.File.Delete(oldImagePath);
+                        File.Delete(oldImagePath);
                     }
                 }
 
@@ -52,9 +52,9 @@ namespace DigitalLibrary.BusinessLogic
                 if (Object.Book.BookURL != null)
                 {
                     var oldBookPath = Path.Combine(wwwRootPath, Object.Book.BookURL.TrimStart('\\'));
-                    if (System.IO.File.Exists(oldBookPath))
+                    if (File.Exists(oldBookPath))
                     {
-                        System.IO.File.Delete(oldBookPath);
+                        File.Delete(oldBookPath);
                     }
                 }
 
@@ -82,15 +82,15 @@ namespace DigitalLibrary.BusinessLogic
             string wwwRootPath = _webHostEnvironment.WebRootPath;
 
             var oldImagePath = Path.Combine(wwwRootPath, Object.Book.ImageURL.TrimStart('\\'));
-            if (System.IO.File.Exists(oldImagePath))
+            if (File.Exists(oldImagePath))
             {
-                System.IO.File.Delete(oldImagePath);
+                File.Delete(oldImagePath);
             }
 
             var oldBookPath = Path.Combine(wwwRootPath, Object.Book.BookURL.TrimStart('\\'));
-            if (System.IO.File.Exists(oldBookPath))
+            if (File.Exists(oldBookPath))
             {
-                System.IO.File.Delete(oldBookPath);
+                File.Delete(oldBookPath);
             }
 
             _unitOfWork.Book.Remove(Object.Book);

@@ -19,16 +19,17 @@ namespace DigitalLibrary.Models
         public int BookTypeId { get; set; }
         [ValidateNever]
         public BookType BookType { get; set; }
+
         [Range(0,10)]
-        public int Grade1 { get; set; }
+        public int? Grade1 { get; set; }
         [Range(0, 10)]
-        public int Grade2 { get; set; }
+        public int? Grade2 { get; set; }
         [Range(0, 10)]
-        public int Grade3 { get; set; }
+        public int? Grade3 { get; set; }
         [Range(0, 10)]
-        public int Grade4 { get; set; }
+        public int? Grade4 { get; set; }
         [Range(0, 10)]
-        public int Grade5 { get; set; }
+        public int? Grade5 { get; set; }
 
         public int StatusId { get; set; }
         [ValidateNever]

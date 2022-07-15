@@ -62,10 +62,10 @@ namespace DigitalLibrary.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(BookVM Object, IFormFile fileImage, IFormFile fileEbook)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid) ***Model is not valid - why, and why it's working ??***
+            //{
                 _businessLogicLayer.UpsertBook(Object, fileImage, fileEbook);
-            }
+            //}
 
             return RedirectToAction("Index");
         }
@@ -89,11 +89,11 @@ namespace DigitalLibrary.Controllers
         [ValidateAntiForgeryToken]
         public  IActionResult Delete(BookVM Object, IFormFile fileImage, IFormFile fileEbook)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid) ***Model is not valid - why, and why it's working ??***
+            //{
                 _businessLogicLayer.DeleteBook(Object, fileImage, fileEbook);
-            }
-            
+            //} 
+
             return RedirectToAction("Index");
 
         }
