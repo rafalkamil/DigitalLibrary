@@ -52,36 +52,35 @@
            </div>
        </div>
 
-        @if(Model.Book.Id != 0)
-        {
+
             <div class="row mb-3">
                 <div class="col-2">
                     <label asp-for="Book.Grade1">Fabula [1-5]</label>
-                    <input asp-for="Book.Grade1" class="form-control"/>
+                    <input asp-for="Book.Grade1" value="0" class="form-control"/>
                     <span asp-validation-for="Book.Grade1" class="text-danger"></span>
                 </div>
                 <div class="col-2">
                     <label asp-for="Book.Grade2">Spojnosc [1-5]</label>
-                    <input asp-for="Book.Grade2" class="form-control"/>
+                    <input asp-for="Book.Grade2" value="0" class="form-control"/>
                     <span asp-validation-for="Book.Grade2" class="text-danger"></span>
                 </div>
                 <div class="col-2">
                     <label asp-for="Book.Grade3">Akcja [1-5]</label>
-                    <input asp-for="Book.Grade3" class="form-control"/>
+                    <input asp-for="Book.Grade3" value="0" class="form-control"/>
                     <span asp-validation-for="Book.Grade3" class="text-danger"></span>
                 </div>
                 <div class="col-2">
                     <label asp-for="Book.Grade4">Bohaterowie [1-5]</label>
-                    <input asp-for="Book.Grade4" class="form-control"/>
+                    <input asp-for="Book.Grade4" value="0" class="form-control"/>
                     <span asp-validation-for="Book.Grade4" class="text-danger"></span>
                 </div>
                 <div class="col-2">
                     <label asp-for="Book.Grade5">Narracja [1-5]</label>
-                    <input asp-for="Book.Grade5" class="form-control"/>
+                    <input asp-for="Book.Grade5" value="0" class="form-control"/>
                     <span asp-validation-for="Book.Grade5" class="text-danger"></span>
                 </div>
             </div> 
-        } <!-- Grades-->
+         <!-- Grades-->
 
        <div class="row mb-3">
            <div class="col-12">
@@ -124,16 +123,3 @@
        </div>
     </div>
 </form>
-
-@section Scripts{
-    <script>
-    tinymce.init({
-      selector: 'textarea',
-      plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
-      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
-      toolbar_mode: 'floating',
-      tinycomments_mode: 'embedded',
-      tinycomments_author: 'Author name',
-    });
-  </script>
-}

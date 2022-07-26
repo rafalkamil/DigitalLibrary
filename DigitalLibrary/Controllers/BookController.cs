@@ -25,6 +25,18 @@ namespace DigitalLibrary.Controllers
             return View(ObjectBookList);
         }
 
+        public IActionResult WishListPage()
+        {
+            IEnumerable<Book> ObjectBookList = _unitOfWork.Book.GetAll(includeProperites: "Category,BookType,Status");
+            return View(ObjectBookList);
+        }
+
+        public IActionResult DetailsPage(int? Id)
+        {
+            Book book = _unitOfWork.Book.GetFirstOrDefault(u => u.Id == Id, includeProperites: "Category,BookType,Status");
+            return View(book);
+        }
+
         public IActionResult UpsertPage(int? Id)
         {
             BookVM bookVM = new()
@@ -46,6 +58,7 @@ namespace DigitalLibrary.Controllers
                     Value = i.Id.ToString()
                 }),
             };
+
             if (Id == null || Id == 0)
             {
                 return View(bookVM);
@@ -55,7 +68,105 @@ namespace DigitalLibrary.Controllers
                 bookVM.Book = _unitOfWork.Book.GetFirstOrDefault(u => u.Id == Id);
                 return View(bookVM);
             }
-            
+        }
+
+        public IActionResult GotItPage(int? Id)
+        {
+            BookVM bookVM = new()
+            {
+                Book = new(),
+                BookType = _unitOfWork.BookType.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.BookTypeName,
+                    Value = i.Id.ToString()
+                }),
+                Category = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.CategoryName,
+                    Value = i.Id.ToString()
+                }),
+                Status = _unitOfWork.Status.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.StatusName,
+                    Value = i.Id.ToString()
+                }),
+            };
+
+            if (Id == null || Id == 0)
+            {
+                return View(bookVM);
+            }
+            else
+            {
+                bookVM.Book = _unitOfWork.Book.GetFirstOrDefault(u => u.Id == Id);
+                return View(bookVM);
+            }
+        }
+
+        public IActionResult NewWishPage(int? Id)
+        {
+            BookVM bookVM = new()
+            {
+                Book = new(),
+                BookType = _unitOfWork.BookType.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.BookTypeName,
+                    Value = i.Id.ToString()
+                }),
+                Category = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.CategoryName,
+                    Value = i.Id.ToString()
+                }),
+                Status = _unitOfWork.Status.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.StatusName,
+                    Value = i.Id.ToString()
+                }),
+            };
+
+            if (Id == null || Id == 0)
+            {
+                return View(bookVM);
+            }
+            else
+            {
+                bookVM.Book = _unitOfWork.Book.GetFirstOrDefault(u => u.Id == Id);
+                return View(bookVM);
+            }
+        }
+
+        public IActionResult ReadedPage(int? Id)
+        {
+            BookVM bookVM = new()
+            {
+                Book = new(),
+                BookType = _unitOfWork.BookType.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.BookTypeName,
+                    Value = i.Id.ToString()
+                }),
+                Category = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.CategoryName,
+                    Value = i.Id.ToString()
+                }),
+                Status = _unitOfWork.Status.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.StatusName,
+                    Value = i.Id.ToString()
+                }),
+            };
+
+            if (Id == null || Id == 0)
+            {
+                return View(bookVM);
+            }
+            else
+            {
+                bookVM.Book = _unitOfWork.Book.GetFirstOrDefault(u => u.Id == Id);
+                return View(bookVM);
+            }
         }
 
         [HttpPost]

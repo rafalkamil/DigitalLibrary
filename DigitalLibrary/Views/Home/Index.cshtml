@@ -30,9 +30,10 @@
                                 <p class="card-title text-primary">@book.Status.StatusName</p> 
                             </div>
                             <div class="pl-1">
-                                <button  type="button" class="nav-link btn btn-primary text-dark">Readed
+                                <a asp-controller="Book" asp-action="ReadedPage" asp-route-id="@book.Id" class="btn btn-primary" style="width:100%">
+                                    Readed
                                     <img src="/lib/bootstrap/icons/check.svg" alt="Bootstrap" width="20" height="20">
-                                </button> @*Make It work You piece of shit !*@
+                                </a>
                             </div>
                             @if(book.BookType.BookTypeName == "e-book")
                             {

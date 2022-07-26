@@ -19,9 +19,5 @@ namespace DigitalLibrary.BusinessLogic
 
         #endregion
 
-        #region WISHLIST
-        public void UpsertWish(BookVM Object, IFormFile fileImage, IFormFile fileEbook);
-        public void DeleteWish(BookVM Object, IFormFile fileImage, IFormFile fileEbook);
-        #endregion
     }
 }

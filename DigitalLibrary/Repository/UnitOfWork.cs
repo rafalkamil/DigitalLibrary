@@ -17,7 +17,7 @@ namespace DigitalLibrary.Repository
             Status = new StatusRepository(_db);
 
         }
-        public IBookRepository Book {get;private set;}
+        public IBookRepository Book {get; private set;}
 
         public IBookTypeRepository BookType{ get; private set; }
 

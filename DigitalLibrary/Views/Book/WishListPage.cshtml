@@ -6,13 +6,11 @@
 
 <div class="text-center">
     <br />
-    <h1 class="display-4">
-        List of Book's I want ! 
-        <a asp-controller="WishList" asp-action="UpsertPage" class="btn btn-primary">
-                <img src="/lib/bootstrap/icons/plus-square.svg" alt="Bootstrap" width="25" height="25">
-                Add New Wish
-        </a> 
-    </h1>
+    <h1 class="display-4">List of Books I want</h1>
+    <a asp-controller="Book" asp-action="NewWishPage" class="btn btn-primary" style="width:100%">
+        <img src="/lib/bootstrap/icons/plus-square.svg" alt="Bootstrap" width="25" height="25">
+        New Wish
+    </a>
 
 </div>
 
@@ -36,7 +34,7 @@
                                 <p class="card-title text-primary">@book.Status.StatusName</p> 
                             </div>
                             <div class="pl-1 p-2">
-                                <a asp-controller="WishList" asp-action="GotItPage" class="btn btn-primary" style="width:100%">
+                                <a asp-controller="Book" asp-action="GotItPage" asp-route-id="@book.Id" class="btn btn-primary" style="width:100%">
                                     Got It
                                     <img src="/lib/bootstrap/icons/star.svg" alt="Bootstrap" width="20" height="20">
                                 </a>

@@ -1,5 +1,94 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Book;
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+
+   <div class="border p-3 mt-4">
+       <div class="row pb-2">
+           <h2 class="text-primary">Details</h2>
+           <hr />
+       </div>
+       <div class="row mb-3">
+           <div class="col-6">
+               <div class="row mb-3">
+                    <label asp-for="Title"></label>
+                    <label asp-for="Title"><b>@Model.Title</b></label>
+               </div>
+               <div class="row mb-3">
+                   <label asp-for="Author"></label>
+                   <label asp-for="Author"><b>@Model.Author</b></label>
+               </div>
+               <div class="row mb-3">
+                       <label asp-for="BookTypeId">Type</label>
+                       <label asp-for="BookTypeId"><b>@Model.BookType.BookTypeName</b></label>
+               </div>
+               <div class="row mb-3">
+                       <label asp-for="CategoryId">Category</label>
+                       <label asp-for="CategoryId"><b>@Model.Category.CategoryName</b></label>
+               </div>
+               <div class="row mb-3">
+                   <label asp-for="StatusId">Status</label>
+                   <label asp-for="StatusId"><b>@Model.Status.StatusName</b></label>
+               </div>
+           </div>
+
+           <div class="col-5">
+               <img src="@Model.ImageURL" style="border-radius:5px;border:1px;width:50%"/>
+           </div>
+       </div>
+
+       <div class="border p-3 mt-4">
+           <div class="row pb-2">
+               <h2 class="text-primary">Grades</h2>
+           <hr />
+           </div>
+           <div class="row mb-3">
+                <div class="col-2">
+                    <label asp-for="Grade1">Fabula [1-5] - </label>
+                    <label asp-for="Grade1"><b>@Model.Grade1</b></label>
+                </div>
+                <div class="col-2">
+                    <label asp-for="Grade2">Spojnosc [1-5] - </label>
+                    <label asp-for="Grade2"><b>@Model.Grade2</b></label>
+                </div>
+                <div class="col-2">
+                    <label asp-for="Grade3">Akcja [1-5] - </label>
+                    <label asp-for="Grade3"><b>@Model.Grade3</b></label>
+                </div>
+                <div class="col-2">
+                    <label asp-for="Grade4">Bohaterowie [1-5] - </label>
+                    <label asp-for="Grade4"><b>@Model.Grade4</b></label>
+                </div>
+                <div class="col-2">
+                    <label asp-for="Grade5">Narracja [1-5] - </label>
+                    <label asp-for="Grade5"><b>@Model.Grade5</b></label>
+                </div>
+            </div> 
+       </div>
+
+       <div class="border p-3 mt-4">
+           <div class="row pb-2">
+               <h2 class="text-primary">Description</h2>
+               <hr />
+           </div>
+           <div class="row mb-3">
+                <div class="col-12">
+                    <label asp-for="Description">@Model.Description</label>
+                </div>
+           </div>
+       </div>
+
+       <div class="border p-3 mt-4">
+           <div class="row mb-3">
+                <div class="col-6">
+                    <a asp-controller="Book" asp-action="UpsertPage" asp-route-id="@Model.Id" class="btn btn-primary" style="width:100%">
+                        <img src="/lib/bootstrap/icons/pen.svg" alt="Bootstrap" width="20" height="20">
+                            Edit
+                    </a>
+                </div>
+                <div class="col-6">
+                     <a asp-controller="Book" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>
+                </div>
+            </div>
+       </div>
+    </div>
+</form>

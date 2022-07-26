@@ -1,0 +1,68 @@
+﻿@model DigitalLibrary.Models.ViewModels.BookVM
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+   <input asp-for="Book.Id" hidden />
+   <input asp-for="Book.ImageURL" hidden />
+   <input asp-for="Book.BookURL" hidden />
+   <select asp-for="Book.BookTypeId" class="form-control" hidden><option selected>6</option></select>
+   <select asp-for="Book.StatusId" class="form-control" hidden><option selected>2</option></select>
+   <input asp-for="Book.Grade1" value="0" class="form-control" hidden/>
+   <input asp-for="Book.Grade2" value="0" class="form-control" hidden/>
+   <input asp-for="Book.Grade3" value="0" class="form-control" hidden/>
+   <input asp-for="Book.Grade4" value="0" class="form-control" hidden/>
+   <input asp-for="Book.Grade5" value="0" class="form-control" hidden/>
+
+   <div class="border p-3 mt-4">
+       <div class="row pb-2">
+           <h2 class="text-primary">Add new Wish</h2>
+           <hr />
+       </div>
+       <div class="row mb-3">
+           <div class="col-6">
+               <div class="row mb-3">
+                    <label asp-for="Book.Title"></label>
+                    <input asp-for="Book.Title" class="form-control"/>
+                    <span asp-validation-for="Book.Title" class="text-danger"></span>
+               </div>
+               <div class="row mb-3">
+                   <label asp-for="Book.Author"></label>
+                   <input asp-for="Book.Author" class="form-control"/>
+                   <span asp-validation-for="Book.Author" class="text-danger"></span>
+               </div>
+               <div class="row mb-3">
+                   <div class="col-6">
+                       <label asp-for="Book.CategoryId">Category</label>
+                       <select asp-for="Book.CategoryId" asp-items="@Model.Category" class="form-control">
+                       <option disabled selected>---Select Category---</option>
+                       </select>
+                       <span asp-validation-for="Book.CategoryId" class="text-danger"></span>
+                   </div>
+                   <div class="col-6">
+                       <label asp-for="Book.ImageURL"></label>
+                       <input type="file" id="uploadBox" name="fileImage" class="form-control"/>
+                       <span asp-validation-for="Book.ImageURL" class="text-danger"></span>
+                    </div>
+               </div>
+           </div>
+       </div>
+
+       <div class="row mb-3">
+           <div class="col-12">
+               <label asp-for="Book.Description"></label>
+               <textarea asp-for="Book.Description" class="form-control"></textarea>
+               <span asp-validation-for="Book.Description" class="text-danger"></span>
+           </div>
+       </div>
+
+       <div class="row mb-3">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" style="width:100%">Create</button>
+            </div>
+       </div>
+       <div class="row mb-3">
+            <div class="col-12">
+                <a asp-controller="Book" asp-action="WishListPage" class="btn btn-primary" style="width:100%">Take Me Back</a>
+            </div>
+       </div>
+    </div>
+</form>
