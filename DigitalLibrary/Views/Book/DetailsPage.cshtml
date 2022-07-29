@@ -80,10 +80,14 @@
        <div class="border p-3 mt-4">
            <div class="row mb-3">
                 <div class="col-6">
-                    <a asp-controller="Book" asp-action="UpsertPage" asp-route-id="@Model.Id" class="btn btn-primary" style="width:100%">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="Book" asp-action="UpsertPage" asp-route-id="@Model.Id" class="btn btn-primary" style="width:100%">
                         <img src="/lib/bootstrap/icons/pen.svg" alt="Bootstrap" width="20" height="20">
                             Edit
-                    </a>
+                        </a>
+                    }
+                    
                 </div>
                 <div class="col-6">
                      <a asp-controller="Book" asp-action="Index" class="btn btn-primary" style="width:100%">Take Me Back</a>

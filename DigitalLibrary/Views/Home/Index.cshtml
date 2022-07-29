@@ -29,19 +29,23 @@
                             <div class="pl-1">
                                 <p class="card-title text-primary">@book.Status.StatusName</p> 
                             </div>
-                            <div class="pl-1">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <div class="pl-1">
                                 <a asp-controller="Book" asp-action="ReadedPage" asp-route-id="@book.Id" class="btn btn-primary" style="width:100%">
                                     Readed
                                     <img src="/lib/bootstrap/icons/check.svg" alt="Bootstrap" width="20" height="20">
                                 </a>
-                            </div>
-                            @if(book.BookType.BookTypeName == "e-book")
-                            {
-                            <hr/>
-                            <div class="pl-1">
+                                </div>
+                                @if(book.BookType.BookTypeName == "e-book")
+                                {
+                                <hr/>
+                                <div class="pl-1">
                                 <button  type="button" class="nav-link btn btn-primary text-dark">Send to Kindle</button> @*Make It work You piece of shit !*@
-                            </div>    
+                                </div>    
+                                }    
                             }
+                                
                         </div>
                     </div>
                 </div>
